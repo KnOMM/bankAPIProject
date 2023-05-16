@@ -16,6 +16,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @NonNull
+    private String iban;
+    @NonNull
     private Integer expDate;
     @NonNull
     private Integer balance;
@@ -28,5 +30,5 @@ public class Card {
     @NonNull
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer user;
+    private Customer owner;
 }

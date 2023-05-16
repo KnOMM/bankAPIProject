@@ -1,8 +1,10 @@
 package ee.taltech.bankAPI.service;
 
 import ee.taltech.bankAPI.entity.Bank;
+import ee.taltech.bankAPI.entity.Card;
 import ee.taltech.bankAPI.entity.Customer;
 import ee.taltech.bankAPI.repository.BankRepository;
+import ee.taltech.bankAPI.repository.CardRepository;
 import ee.taltech.bankAPI.repository.CustomerRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ public class InitializationService {
 
     private final CustomerRepository customerRepository;
     private final BankRepository bankRepository;
+    private final CardRepository cardRepository;
 
     @PostConstruct
     private void initAppData(){
@@ -35,6 +38,14 @@ public class InitializationService {
         bankRepository.save(bank1);
         bankRepository.save(bank2);
         bankRepository.save(bank3);
+
+        Card card1 = new Card("EE0379713", 2025, 0, 123, bank1, customer1);
+        Card card2 = new Card("EE1111111", 2029, 1000, 456, bank2, customer2);
+        Card card3 = new Card("EE2222222", 2024, 125, 768, bank3, customer3);
+
+        cardRepository.save(card1);
+        cardRepository.save(card2);
+        cardRepository.save(card3);
     }
 
 }
