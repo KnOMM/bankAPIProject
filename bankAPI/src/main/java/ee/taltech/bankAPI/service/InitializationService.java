@@ -1,6 +1,8 @@
 package ee.taltech.bankAPI.service;
 
+import ee.taltech.bankAPI.entity.Bank;
 import ee.taltech.bankAPI.entity.Customer;
+import ee.taltech.bankAPI.repository.BankRepository;
 import ee.taltech.bankAPI.repository.CustomerRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class InitializationService {
 
     private final CustomerRepository customerRepository;
+    private final BankRepository bankRepository;
 
     @PostConstruct
     private void initAppData(){
@@ -25,6 +28,13 @@ public class InitializationService {
         customerRepository.save(customer3);
         customerRepository.save(customer4);
         customerRepository.save(customer5);
+
+        Bank bank1 = new Bank("LHV", 0.12);
+        Bank bank2 = new Bank("S|E|B", 0.3);
+        Bank bank3 = new Bank("MonoBank", 0.07);
+        bankRepository.save(bank1);
+        bankRepository.save(bank2);
+        bankRepository.save(bank3);
     }
 
 }

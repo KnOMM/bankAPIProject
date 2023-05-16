@@ -18,5 +18,5 @@ public class Bank {
     @NonNull
     private String name;
     @NonNull
-    private Float commission;
+    private Double commission;
 }
