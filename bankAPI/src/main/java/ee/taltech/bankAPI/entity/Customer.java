@@ -10,7 +10,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor
-public class Bank {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,5 +18,13 @@ public class Bank {
     @NonNull
     private String name;
     @NonNull
-    private Float commission;
+    private String surname;
+    @NonNull
+    private String email;
+    @NonNull
+    private String address;
+    @NonNull
+    private String phoneNumber;
+    @NonNull
+    private Integer age;
 }

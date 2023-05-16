@@ -1,36 +1,27 @@
 package ee.taltech.bankAPI.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
-@NoArgsConstructor
 public class Transaction {
-
-    public Transaction(Card sender, Card receiver, Integer amount){
-        this.sender = sender;
-        this.receiver = receiver;
-        this.amount = amount;
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
+    @NonNull
     @ManyToOne
-    @JoinColumn(name = "sender_id")
-    private Card sender;
-
+    @JoinColumn(name = "sender_card_id")
+    private Card cardSender;
+    @NonNull
     @ManyToOne
-    @JoinColumn(name = "receiver_id")
-    private Card receiver;
-    private Integer amount;
-
+    @JoinColumn(name = "receiver_card_id")
+    private Card cardReceiver;
+    @NonNull
+    private Float amount;
 }
