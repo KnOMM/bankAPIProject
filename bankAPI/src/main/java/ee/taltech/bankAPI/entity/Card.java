@@ -20,7 +20,7 @@ public class Card {
     @NonNull
     private Integer expDate;
     @NonNull
-    private Integer balance;
+    private Double balance;
     @NonNull
     private Integer csv;
     @NonNull

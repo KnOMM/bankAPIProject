@@ -32,16 +32,16 @@ public class InitializationService {
         customerRepository.save(customer4);
         customerRepository.save(customer5);
 
-        Bank bank1 = new Bank("LHV", 0.12);
-        Bank bank2 = new Bank("S|E|B", 0.3);
-        Bank bank3 = new Bank("MonoBank", 0.07);
+        Bank bank1 = new Bank("LHV", 0.012);
+        Bank bank2 = new Bank("S|E|B", 0.03);
+        Bank bank3 = new Bank("MonoBank", 0.007);
         bankRepository.save(bank1);
         bankRepository.save(bank2);
         bankRepository.save(bank3);
 
-        Card card1 = new Card("EE0379713", 2025, 0, 123, bank1, customer1);
-        Card card2 = new Card("EE1111111", 2029, 1000, 456, bank2, customer2);
-        Card card3 = new Card("EE2222222", 2024, 125, 768, bank3, customer3);
+        Card card1 = new Card("EE0379713", 2025, 0d, 123, bank1, customer1);
+        Card card2 = new Card("EE1111111", 2029, 1000d, 456, bank2, customer2);
+        Card card3 = new Card("EE2222222", 2024, 125d, 768, bank3, customer3);
 
         cardRepository.save(card1);
         cardRepository.save(card2);
