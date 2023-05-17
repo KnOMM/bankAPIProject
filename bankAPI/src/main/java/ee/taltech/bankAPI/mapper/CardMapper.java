@@ -27,10 +27,9 @@ public class CardMapper {
         return cardDto;
     }
 
-    public CardStatusDto cardStatusDto(Card card, Double commission, String status){
+    public CardStatusDto cardStatusDto(Card card, String status){
         CardStatusDto cardDto = new CardStatusDto();
         cardDto.setStatus(status);
-        cardDto.setCommission(commission);
         cardDto.setIban(card.getIban());
         cardDto.setOwner(card.getOwner().getName() + " " + card.getOwner().getSurname());
         cardDto.setBalance(card.getBalance());

@@ -33,4 +33,20 @@ public class CardController {
             @RequestParam(value = "iban") String ibanReceiver) {
         return cardService.sendMoney(ibanSender, ibanReceiver, amount);
     }
+
+    @GetMapping("/{iban}/deposit")
+    public CardStatusDto depositMoney(
+            @PathVariable(value = "iban") String iban,
+            @RequestParam String amount
+    ){
+        return cardService.depositMoney(iban, amount);
+    }
+
+    @GetMapping("/{iban}/withdraw")
+    public  CardStatusDto withdrawMoney(
+            @PathVariable(value = "iban") String iban,
+            @RequestParam String amount
+    ){
+        return cardService.withdrawMoney(iban, amount);
+    }
 }

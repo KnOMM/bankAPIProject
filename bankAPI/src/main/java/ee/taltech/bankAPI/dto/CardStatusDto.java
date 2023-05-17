@@ -13,5 +13,4 @@ public class CardStatusDto {
     private String iban;
     private Double balance;
     private String status;
-    private Double commission;
 }

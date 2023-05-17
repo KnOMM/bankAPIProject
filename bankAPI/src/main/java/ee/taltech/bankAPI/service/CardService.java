@@ -44,11 +44,35 @@ public class CardService {
                 sender.get().setBalance(sender.get().getBalance() - Double.parseDouble(amount));
                 receiver.get().setBalance(receiver.get().getBalance() + amountD);
                 cardRepository.save(sender.get());
-                if (!sender.get().getBank().getName().equals(receiver.get().getBank().getName())) {
-                    return cardMapper.cardStatusDto(sender.get(), sender.get().getBank().getCommission(), "successful");
-                } return cardMapper.cardStatusDto(sender.get(), 0d, "successful");
+                return cardMapper.cardStatusDto(sender.get(), "successful");
             }
         }
-        return cardMapper.cardStatusDto(sender.get(), 0d, "error - not enough money or card is invalid");
+        return cardMapper.cardStatusDto(sender.get(), "error - not enough money or card is invalid");
+    }
+
+    public CardStatusDto depositMoney(String iban, String amount){
+        Optional<Card> card = cardRepository.findByIban(iban);
+        double amountD = Double.parseDouble(amount);
+        if (amountD > 0){
+            if(card.isPresent()) {
+                card.get().setBalance(card.get().getBalance() + amountD);
+                cardRepository.save(card.get());
+                return cardMapper.cardStatusDto(card.get(), "successful");
+            }
+        }
+        return cardMapper.cardStatusDto(card.get(), "error - amount is invalid");
+    }
+
+    public CardStatusDto withdrawMoney(String iban, String amount){
+        Optional<Card> card = cardRepository.findByIban(iban);
+        double amountD = Double.parseDouble(amount);
+        if(amountD > 0) {
+            if (card.isPresent() && card.get().getBalance() >= amountD) {
+                card.get().setBalance(card.get().getBalance() - amountD);
+                cardRepository.save(card.get());
+                return cardMapper.cardStatusDto(card.get(), "successful");
+            }
+        }
+        return cardMapper.cardStatusDto(card.get(), "error - amount is invalid");
     }
 }
